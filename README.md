@@ -8,9 +8,9 @@ any other `.txt` file with path which user enter. App analyzes each line in `.tx
 the line. 
 
 If the value matches next rules:
-    1. Document number must be `15` characters long;
-    2. Starts with the sequence `docnum` or `contract`;
-    3. And contains only `letters or numbers` without any other chars (checking by regex);
+    1. Document number must be `15` characters long;  
+    2. Starts with the sequence `docnum` or `contract`;  
+    3. And contains only `letters or numbers` without any other chars (checking by regex);  
 then app write valid doc numbers to next `.txt` files: `validDocumentNumber.txt` or `validContractNumber.txt`.
 
 If the value does not match rules above app writes this value to `invalidDocumentNumber.txt` files and append  
