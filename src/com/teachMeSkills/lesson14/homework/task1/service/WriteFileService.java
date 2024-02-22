@@ -33,10 +33,8 @@ public class WriteFileService {
         deleteFileIfExist(PathConstants.VALID_DOCUMENT_NUMBERS);
         deleteFileIfExist(PathConstants.VALID_CONTRACT_NUMBERS);
         deleteFileIfExist(PathConstants.INVALID_NUMBERS_LOG);
-        deleteFileIfExist(PathConstants.ERROR_LOG);
         createFileWithPath(PathConstants.VALID_DOCUMENT_NUMBERS);
         createFileWithPath(PathConstants.VALID_CONTRACT_NUMBERS);
-        createFileWithPath(PathConstants.ERROR_LOG);
         createFileWithPath(PathConstants.INVALID_NUMBERS_LOG);
     }
 

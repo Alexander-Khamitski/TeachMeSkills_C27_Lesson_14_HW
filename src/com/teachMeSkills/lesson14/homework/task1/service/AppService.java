@@ -4,6 +4,7 @@ import com.teachMeSkills.lesson14.homework.task1.consts.PathConstants;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class AppService {
 
@@ -11,6 +12,14 @@ public class AppService {
         deleteLogFile(PathConstants.ERROR_LOG);
         deleteLogFile(PathConstants.EXECUTION_LOG);
         createLogFile();
+    }
+
+    public static String getPathToFile() {
+        Scanner scanner = new Scanner(System.in);
+        String startAppMessage = String.format("Enter path to file or just use default file: '%s'\n", PathConstants.DEFAULT_PATH_FILE);
+        System.out.printf(startAppMessage);
+        WriteFileService.writeFile(PathConstants.EXECUTION_LOG, startAppMessage);
+        return scanner.nextLine();
     }
 
     private static void deleteLogFile(String path) {
