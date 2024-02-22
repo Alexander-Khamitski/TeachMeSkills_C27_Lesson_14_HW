@@ -7,7 +7,8 @@ public class Runner {
 
     public static void main(String[] args) {
         AppService.startApp();
-        WriteReportService.writeReportFromFile(AppService.getPathToFile());
+        String path = AppService.getPathToFile();
+        WriteReportService.writeReportFromFile(path);
         AppService.closeApp();
     }
 

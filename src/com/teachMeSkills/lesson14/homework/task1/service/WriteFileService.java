@@ -16,15 +16,15 @@ public class WriteFileService {
         String path = isDocNumber(documentNumber) ?
                 PathConstants.VALID_DOCUMENT_NUMBERS : PathConstants.VALID_CONTRACT_NUMBERS;
 
-        writeFile(path, documentNumber);
+        writeNewLineToFile(path, documentNumber);
     }
 
-    public static void writeFile(String path, String value) {
+    public static void writeNewLineToFile(String path, String value) {
         try {
             value += "\n";
             Files.write(Path.of(path), value.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-            WriteFileService.writeFile(PathConstants.ERROR_LOG, e.getMessage());
+            WriteFileService.writeNewLineToFile(PathConstants.ERROR_LOG, e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -32,9 +32,14 @@ public class WriteFileService {
     public static void prepareDefaultFiles() {
         deleteFileIfExist(PathConstants.VALID_DOCUMENT_NUMBERS);
         deleteFileIfExist(PathConstants.VALID_CONTRACT_NUMBERS);
+
         deleteFileIfExist(PathConstants.INVALID_NUMBERS_LOG);
+        deleteFileIfExist(PathConstants.ERROR_LOG);
+
         createFileWithPath(PathConstants.VALID_DOCUMENT_NUMBERS);
         createFileWithPath(PathConstants.VALID_CONTRACT_NUMBERS);
+
+        createFileWithPath(PathConstants.ERROR_LOG);
         createFileWithPath(PathConstants.INVALID_NUMBERS_LOG);
     }
 
@@ -44,11 +49,11 @@ public class WriteFileService {
             file.delete();
             String message = "File with next path has been DELETED: " + path;
             System.out.println(message);
-            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, message);
+            WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, message);
         } else {
             String message = "File with path does not exist: " + path;
             System.out.println(message);
-            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, message);
+            WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, message);
         }
     }
 
@@ -59,14 +64,14 @@ public class WriteFileService {
                 file.createNewFile();
                 String message = "File with next path has been CREATED: " + path;
                 System.out.println(message);
-                WriteFileService.writeFile(PathConstants.EXECUTION_LOG, message);
+                WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, message);
             } else {
                 String message = "File with path exists: " + path;
                 System.out.println(message);
-                WriteFileService.writeFile(PathConstants.EXECUTION_LOG, message);
+                WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, message);
             }
         } catch (IOException e) {
-            WriteFileService.writeFile(PathConstants.ERROR_LOG, e.getMessage());
+            WriteFileService.writeNewLineToFile(PathConstants.ERROR_LOG, e.getMessage());
             throw new RuntimeException(e);
         }
     }
