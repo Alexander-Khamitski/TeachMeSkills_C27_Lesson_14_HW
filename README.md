@@ -22,7 +22,7 @@ Once the app started `error_log.txt` and `execution_log.txt` files are created.
 
 ---
 
-Application implemented bt next classes and interfaces:
+Application implemented by next classes and interfaces:
 - Contants interfaces: **"ExceptionMessageConstants"**, **"FormatConstants"**, **"PathConstants"**.
 - Exception class **"DocumentNumberFormatException"** with a constructor with message.
 - Validator classes **"DocumentNumberValidator"** with document number validations according the rules above.
