@@ -25,6 +25,16 @@ public class AppService {
         return path;
     }
 
+    public static String getPathToFile() {
+        Scanner scanner = new Scanner(System.in);
+        String startAppMessage = String.format("Enter path to file or just use default file: '%s'\n", PathConstants.DEFAULT_PATH_FILE);
+        System.out.printf(startAppMessage);
+        WriteFileService.writeFile(PathConstants.EXECUTION_LOG, startAppMessage);
+        String path = scanner.nextLine();
+        WriteFileService.writeFile(PathConstants.EXECUTION_LOG, "Entered by user path: " + path);
+        return path;
+    }
+
     private static void deleteLogFile(String path) {
         File file = new File(path);
         if (file.exists()) {
