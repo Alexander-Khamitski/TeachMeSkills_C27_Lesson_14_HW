@@ -4,6 +4,7 @@ import com.teachMeSkills.lesson14.homework.task1.consts.PathConstants;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class AppService {
 
@@ -11,6 +12,17 @@ public class AppService {
         deleteLogFile(PathConstants.ERROR_LOG);
         deleteLogFile(PathConstants.EXECUTION_LOG);
         createLogFile();
+        WriteFileService.prepareDefaultFiles();
+    }
+
+    public static String getPathToFile() {
+        Scanner scanner = new Scanner(System.in);
+        String startMessage = String.format("Enter path to file or just use default file: '%s'.", PathConstants.DEFAULT_PATH_FILE);
+        System.out.println(startMessage);
+        String path = scanner.nextLine();
+        WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, startMessage);
+        WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, String.format("User entered next path: '%s'.", path));
+        return path;
     }
 
     private static void deleteLogFile(String path) {
@@ -30,15 +42,15 @@ public class AppService {
 
             String startMessage = "Start";
             System.out.println(startMessage);
-            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, startMessage);
+            WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, startMessage);
 
             String executionLogFileMessage = "File with next path has been created: " + PathConstants.EXECUTION_LOG;
             System.out.println(executionLogFileMessage);
-            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, executionLogFileMessage);
+            WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, executionLogFileMessage);
 
             String errorLogFileMessage = "File with next path has been created: " + PathConstants.ERROR_LOG;
             System.out.println(errorLogFileMessage);
-            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, errorLogFileMessage);
+            WriteFileService.writeNewLineToFile(PathConstants.EXECUTION_LOG, errorLogFileMessage);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -50,7 +62,7 @@ public class AppService {
         File executionLog = new File(path);
         String endMessage = "End";
         if (executionLog.exists()) {
-            WriteFileService.writeFile(path, endMessage);
+            WriteFileService.writeNewLineToFile(path, endMessage);
         }
         System.out.println(endMessage);
     }
