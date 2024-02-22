@@ -19,7 +19,9 @@ public class AppService {
         String startAppMessage = String.format("Enter path to file or just use default file: '%s'\n", PathConstants.DEFAULT_PATH_FILE);
         System.out.printf(startAppMessage);
         WriteFileService.writeFile(PathConstants.EXECUTION_LOG, startAppMessage);
-        return scanner.nextLine();
+        String path = scanner.nextLine();
+        WriteFileService.writeFile(PathConstants.EXECUTION_LOG, "Entered by user path: " + path);
+        return path;
     }
 
     private static void deleteLogFile(String path) {

@@ -22,6 +22,7 @@ public class WriteReportService {
             String message = String.format("File with path '%s' not found", path);
             System.out.println(message);
             WriteFileService.writeFile(PathConstants.ERROR_LOG, message);
+            WriteFileService.writeFile(PathConstants.EXECUTION_LOG, message);
         }
     }
 
